@@ -1,5 +1,5 @@
 import{useEffect,useState}from"react";
-const API="http://localhost:5000/api";
+const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 export default function App(){const[p,S]=useState(null),[careers,C]=useState([]),[result,R]=useState(null),[msg,M]=useState(""),[newSkill,N]=useState(""),[db,D]=useState("checking");
 async function load(){try{let[a,b,h]=await Promise.all([fetch(API+"/profile"),fetch(API+"/careers"),fetch(API+"/health")]);S(await a.json());C(await b.json());D((await h.json()).database)}catch{M("API unavailable. Start the backend and MongoDB.");D("offline")}}useEffect(()=>{load()},[]);
 if(!p)return <main className="loading">Loading SkillPath…</main>;
